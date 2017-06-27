@@ -58,12 +58,13 @@ public class KittensFragment extends Fragment {
             ids[i] = id;
         }
 
+        //Adapter for filling recycler view with images
         ImageAdapter imageAdapter = new ImageAdapter(ids);
         recyclerView.setAdapter(imageAdapter);
 
+        //sets pictures to be in a grid with two columns
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
         recyclerView.setLayoutManager(layoutManager);
-
 
         return recyclerView;
     }
