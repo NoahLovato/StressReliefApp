@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:checked="false"
+            android:title="Home"
+            android:icon="@drawable/ic_home_black_24dp"/>
+
+        <item
+            android:id="@+id/kittens"
+            android:checked="false"
+            android:title="Kittens"
+            android:icon="@drawable/ic_pets_black_24dp"/>
+
+        <item
+            android:id="@+id/puppies"
+            android:checked="false"
+            android:title="Puppies"
+            android:icon="@drawable/ic_pets_black_24dp"/>
+
+        <item
+            android:id="@+id/music"
+            android:checked="false"
+            android:title="Music"
+            android:icon="@drawable/ic_music_note_black_24dp"/>
+
+        <item
+            android:id="@+id/settings"
+            android:checked="false"
+            android:title="Settings"
+            android:icon="@drawable/ic_settings_black_24dp"/>
+
+    </group>
+
+</menu>

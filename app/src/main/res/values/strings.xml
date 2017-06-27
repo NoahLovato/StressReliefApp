@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StressReliever</string>
+    <string name="open_drawer">Navigate</string>
 </resources>
