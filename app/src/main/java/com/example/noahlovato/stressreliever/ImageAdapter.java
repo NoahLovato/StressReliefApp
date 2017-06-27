@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
+    private static final String TAG = "ImageAdapter";
+
     private int[] imageIds;
 
     public ImageAdapter(int[] imageIds){
@@ -37,9 +39,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
-        ImageView imageView = (ImageView)cardView.findViewById(R.id.image);
-        Drawable drawable = cardView.getResources().getDrawable(imageIds[position],null);
-        imageView.setImageDrawable(drawable);
+        ImageView imageView = (ImageView)cardView.findViewById(R.id.some_image2);
+        imageView.setBackgroundResource(imageIds[position]);
         imageView.setContentDescription("Picture" + position);
 
     }
