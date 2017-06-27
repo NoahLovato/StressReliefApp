@@ -12,6 +12,12 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
+import com.example.noahlovato.stressreliever.fragments.HomeFragment;
+import com.example.noahlovato.stressreliever.fragments.KittensFragment;
+import com.example.noahlovato.stressreliever.fragments.MusicFragment;
+import com.example.noahlovato.stressreliever.fragments.PuppiesFragment;
+import com.example.noahlovato.stressreliever.fragments.SettingsFragment;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         String selectedMenu = item.getTitle().toString();
                         Log.d(TAG, selectedMenu + " selected.");
 
+                        //Shows fragment corresponding to menu click
                         if(selectedMenu.equalsIgnoreCase("Home")) {
                             fragment = new HomeFragment();
                         }
@@ -65,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new SettingsFragment();
                         }
 
+                        //Does the fragment transaction to display the fragment
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frame_layout,fragment);
                         ft.addToBackStack(null);
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //For handling hamburger icon clicks
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(drawerToggle.onOptionsItemSelected(item)) return true;

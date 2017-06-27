@@ -1,4 +1,4 @@
-package com.example.noahlovato.stressreliever;
+package com.example.noahlovato.stressreliever.fragments;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.noahlovato.stressreliever.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class KittensFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
 
-    public KittensFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class KittensFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kittens, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
 }
