@@ -1,11 +1,14 @@
 package com.example.noahlovato.stressreliever;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
@@ -13,9 +16,13 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     NavigationView navigationView;
+    Fragment fragment;
+    FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,33 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                         drawerLayout.closeDrawers();
+                        String selectedMenu = item.getTitle().toString();
+                        Log.d(TAG, selectedMenu + " selected.");
+
+                        if(selectedMenu.equalsIgnoreCase("Home")) {
+                            fragment = new HomeFragment();
+                        }
+                        else if(selectedMenu.equalsIgnoreCase("Kittens")) {
+                            fragment = new KittensFragment();
+                        }
+                        else if(selectedMenu.equalsIgnoreCase("Puppies")) {
+                            fragment = new PuppiesFragment();
+                        }
+                        else if (selectedMenu.equalsIgnoreCase("Music")) {
+                            fragment = new MusicFragment();
+                        }
+                        else if(selectedMenu.equalsIgnoreCase("Settings")) {
+                            fragment = new SettingsFragment();
+                        }
+
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.frame_layout,fragment);
+                        ft.addToBackStack(null);
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                        ft.commit();
+
                         return true;
                     }
                 });
@@ -52,5 +85,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(drawerToggle.onOptionsItemSelected(item)) return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showFragment(int id, Fragment frag)
+    {
+        ft.replace(id,frag);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 }

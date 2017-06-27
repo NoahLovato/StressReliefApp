@@ -7,6 +7,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/settings" />
+        android:text="@string/settings"
+        android:textSize="25dp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
 
 </FrameLayout>
