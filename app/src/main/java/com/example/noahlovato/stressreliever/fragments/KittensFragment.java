@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.example.noahlovato.stressreliever.ImageAdapter;
 import com.example.noahlovato.stressreliever.R;
 import com.example.noahlovato.stressreliever.models.LocalPhoto;
@@ -30,6 +32,11 @@ public class KittensFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //Log event for Fabric Answers
+        Answers.getInstance().logContentView(new ContentViewEvent()
+            .putContentName("Looking at kittens"));
+
         // Inflate the layout for this fragment
         RecyclerView recyclerView = (RecyclerView)inflater.inflate(
                 R.layout.fragment_kittens,container,false);
