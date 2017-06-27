@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
+import com.crashlytics.android.answers.CustomEvent;
 import com.example.noahlovato.stressreliever.ImageAdapter;
 import com.example.noahlovato.stressreliever.R;
 import com.example.noahlovato.stressreliever.models.LocalPhoto;
@@ -34,8 +35,7 @@ public class KittensFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //Log event for Fabric Answers
-        Answers.getInstance().logContentView(new ContentViewEvent()
-            .putContentName("Looking at kittens"));
+        Answers.getInstance().logCustom(new CustomEvent("Looking at kittens"));
 
         // Inflate the layout for this fragment
         RecyclerView recyclerView = (RecyclerView)inflater.inflate(
