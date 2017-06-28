@@ -43,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
+        //Goes to HomeFragment by default
+        //Does the fragment transaction to display the fragment
+        fragment = new HomeFragment();
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_layout,fragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
+
         navigationView = (NavigationView)findViewById(R.id.navi_view);
 
         //Listener for menu item clicks in navigation drawer
