@@ -15,6 +15,7 @@ import com.example.noahlovato.stressreliever.R;
  */
 public class MusicFragment extends Fragment {
 
+    private static final String TAG = "MusicFragment";
 
     public MusicFragment() {
         // Required empty public constructor
