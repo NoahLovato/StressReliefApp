@@ -35,7 +35,7 @@ public class KittensFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //Log event for Fabric Answers
-        Answers.getInstance().logCustom(new CustomEvent("Looking at kittens"));
+        Answers.getInstance().logCustom(new CustomEvent("Looking at cute animals"));
 
         // Inflate the layout for this fragment
         RecyclerView recyclerView = (RecyclerView)inflater.inflate(

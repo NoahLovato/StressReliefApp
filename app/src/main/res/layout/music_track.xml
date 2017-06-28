@@ -12,11 +12,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <ImageButton
         android:id="@+id/music_button"
+        android:src="@drawable/ic_play_arrow_black_24dp"
+        android:background="@color/cardview_light_background"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_alignParentTop="true"
@@ -27,7 +28,6 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_weight="1"
         android:layout_alignBottom="@+id/music_button"
         android:layout_toEndOf="@+id/music_button"
         android:layout_marginStart="25dp" />
@@ -36,9 +36,8 @@
         android:id="@+id/song_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Song Name"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:layout_marginTop="5dp"
         android:layout_alignTop="@+id/music_button"
         android:layout_alignStart="@+id/progressBar" />
