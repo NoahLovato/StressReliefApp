@@ -21,11 +21,11 @@ import com.example.noahlovato.stressreliever.models.MusicAdapter;
 public class MusicFragment extends Fragment {
 
     private static final String TAG = "MusicFragment";
+    public boolean isPlaying;
 
     public MusicFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
