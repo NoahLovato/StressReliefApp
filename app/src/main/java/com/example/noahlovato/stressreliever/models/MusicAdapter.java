@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.noahlovato.stressreliever.ImageAdapter;
@@ -47,6 +48,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         CardView cardView = holder.cardView;
         TextView textView = (TextView) cardView.findViewById(R.id.song_title);
         final ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.music_button);
+        final ProgressBar pb = (ProgressBar) cardView.findViewById(R.id.progressBar);
+
         textView.setText(tracks[position]);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -55,10 +58,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 if(!isPlaying) {
                     isPlaying = true;
                     imageButton.setImageResource(R.drawable.ic_pause_black_24dp);
+                    pb.setIndeterminate(true);
                 }
                 else{
                     isPlaying = false;
                     imageButton.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    pb.setIndeterminate(false);
                 }
             }
         });
