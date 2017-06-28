@@ -59,11 +59,8 @@ public class MainActivity extends AppCompatActivity {
                         if(selectedMenu.equalsIgnoreCase("Home")) {
                             fragment = new HomeFragment();
                         }
-                        else if(selectedMenu.equalsIgnoreCase("Kittens")) {
+                        else if(selectedMenu.equalsIgnoreCase("Cute Animals")) {
                             fragment = new KittensFragment();
-                        }
-                        else if(selectedMenu.equalsIgnoreCase("Puppies")) {
-                            fragment = new PuppiesFragment();
                         }
                         else if (selectedMenu.equalsIgnoreCase("Music")) {
                             fragment = new MusicFragment();

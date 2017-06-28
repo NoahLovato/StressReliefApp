@@ -10,15 +10,9 @@
             android:icon="@drawable/ic_home_black_24dp"/>
 
         <item
-            android:id="@+id/kittens"
+            android:id="@+id/animals"
             android:checked="false"
-            android:title="Kittens"
-            android:icon="@drawable/ic_pets_black_24dp"/>
-
-        <item
-            android:id="@+id/puppies"
-            android:checked="false"
-            android:title="Puppies"
+            android:title="Cute Animals"
             android:icon="@drawable/ic_pets_black_24dp"/>
 
         <item
