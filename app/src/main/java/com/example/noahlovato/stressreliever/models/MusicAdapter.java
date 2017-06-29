@@ -1,5 +1,7 @@
 package com.example.noahlovato.stressreliever.models;
 
+import android.content.SharedPreferences;
+import android.os.CountDownTimer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +21,7 @@ import com.example.noahlovato.stressreliever.R;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {
 
     private static final String TAG = "MusicAdapter";
-    boolean isPlaying = false;
+    boolean isPlaying;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
@@ -49,8 +51,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         TextView textView = (TextView) cardView.findViewById(R.id.song_title);
         final ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.music_button);
         final ProgressBar pb = (ProgressBar) cardView.findViewById(R.id.progressBar);
-
         textView.setText(tracks[position]);
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,12 +60,25 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 if(!isPlaying) {
                     isPlaying = true;
                     imageButton.setImageResource(R.drawable.ic_pause_black_24dp);
-                    pb.setIndeterminate(true);
+
+                    new CountDownTimer(10000, 1000){
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            pb.incrementProgressBy(5);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            pb.incrementProgressBy(-100);
+                            imageButton.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                            isPlaying = false;
+                        }
+                    }.start();
+
                 }
                 else{
                     isPlaying = false;
                     imageButton.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                    pb.setIndeterminate(false);
                 }
             }
         });

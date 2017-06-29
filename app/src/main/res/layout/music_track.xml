@@ -26,14 +26,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/music_button"
-        android:layout_toEndOf="@+id/music_button"
-        android:layout_marginStart="25dp" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="240dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/music_button"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@+id/music_button" />
 
     <TextView
         android:id="@+id/song_title"
