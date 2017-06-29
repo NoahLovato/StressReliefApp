@@ -1,5 +1,6 @@
 package com.example.noahlovato.stressreliever;
 
+import android.os.PersistableBundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -23,6 +24,7 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    int fragmentId = 0;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
+        if(savedInstanceState != null) {
+            fragmentId = savedInstanceState.getInt("PreviousFragment");
+            Log.d(TAG, "fragmentId is: " + fragmentId);
+        }
+
         //Sets up listener for hamburger icon to open drawer
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(
@@ -45,7 +52,24 @@ public class MainActivity extends AppCompatActivity {
 
         //Goes to HomeFragment by default
         //Does the fragment transaction to display the fragment
-        fragment = new HomeFragment();
+
+            if(fragmentId == 0) {
+                Log.d(TAG, "Creating HomeFragment");
+                fragment = new HomeFragment();
+            }
+            else if(fragmentId == 1) {
+                Log.d(TAG, "Creating KittensFragment");
+                fragment = new KittensFragment();
+            }
+            else if(fragmentId == 2) {
+                Log.d(TAG, "Creating MusicFragment");
+                fragment = new MusicFragment();
+            }
+            else if(fragmentId == 3) {
+                Log.d(TAG, "Creating SettingsFragment");
+                fragment = new SettingsFragment();
+            }
+
         ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frame_layout,fragment);
         ft.addToBackStack(null);
@@ -67,15 +91,19 @@ public class MainActivity extends AppCompatActivity {
                         //Shows fragment corresponding to menu click
                         if(selectedMenu.equalsIgnoreCase("Home")) {
                             fragment = new HomeFragment();
+                            fragmentId = 0;
                         }
                         else if(selectedMenu.equalsIgnoreCase("Cute Animals")) {
                             fragment = new KittensFragment();
+                            fragmentId = 1;
                         }
                         else if (selectedMenu.equalsIgnoreCase("Music")) {
                             fragment = new MusicFragment();
+                            fragmentId = 2;
                         }
                         else if(selectedMenu.equalsIgnoreCase("Settings")) {
                             fragment = new SettingsFragment();
+                            fragmentId = 3;
                         }
 
                         //Does the fragment transaction to display the fragment
@@ -102,11 +130,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showFragment(int id, Fragment frag)
-    {
-        ft.replace(id,frag);
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("PreviousFragment", fragmentId);
     }
+
 }
