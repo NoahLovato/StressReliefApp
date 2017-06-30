@@ -1,9 +1,9 @@
 package com.example.noahlovato.stressreliever.models;
 
-import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.noahlovato.stressreliever.ImageAdapter;
 import com.example.noahlovato.stressreliever.R;
 
 /**
@@ -21,7 +20,8 @@ import com.example.noahlovato.stressreliever.R;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {
 
     private static final String TAG = "MusicAdapter";
-    boolean isPlaying;
+    ITrack button1 = new Track();
+    ITrack button2 = new Track();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
@@ -46,7 +46,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
         TextView textView = (TextView) cardView.findViewById(R.id.song_title);
         final ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.music_button);
@@ -57,29 +57,36 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isPlaying) {
-                    isPlaying = true;
-                    imageButton.setImageResource(R.drawable.ic_pause_black_24dp);
+                Log.d(TAG, "Button 1: " + button1.isPlaying());
+                Log.d(TAG, "Button 2: " + button2.isPlaying() + "\n");
+                Log.d(TAG, "Button id pressed: " + R.id.music_button);
+                Log.d(TAG, "Button 1 song: " + button1.getName());
+                Log.d(TAG, "Button 2 song: " + button2.getName());
 
-                    new CountDownTimer(10000, 1000){
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                            pb.incrementProgressBy(5);
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            pb.incrementProgressBy(-100);
-                            imageButton.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                            isPlaying = false;
-                        }
-                    }.start();
-
+                if(!button1.isPlaying() && !button2.isPlaying())
+                {
+                    button1 = new Track(imageButton,pb,false,tracks[position]);
+                    button1.play();
                 }
-                else{
-                    isPlaying = false;
-                    imageButton.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                else if(button1.isPlaying())
+                {
+                    button1.stop();
+                    if(!button1.getName().equals(tracks[position]))
+                    {
+                        button2 = new Track(imageButton, pb, false, tracks[position]);
+                        button2.play();
+                    }
                 }
+                else if(button2.isPlaying())
+                {
+                    button2.stop();
+                    if(!button2.getName().equals(tracks[position]))
+                    {
+                        button1 = new Track(imageButton,pb,false,tracks[position]);
+                        button1.play();
+                    }
+                }
+
             }
         });
     }
