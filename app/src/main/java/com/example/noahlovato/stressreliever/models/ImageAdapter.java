@@ -1,11 +1,12 @@
-package com.example.noahlovato.stressreliever;
+package com.example.noahlovato.stressreliever.models;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.noahlovato.stressreliever.R;
 
 /**
  * Created by noah.lovato on 6/27/2017.

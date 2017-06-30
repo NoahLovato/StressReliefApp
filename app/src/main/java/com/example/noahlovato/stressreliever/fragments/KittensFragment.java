@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.ContentViewEvent;
 import com.crashlytics.android.answers.CustomEvent;
-import com.example.noahlovato.stressreliever.ImageAdapter;
+import com.example.noahlovato.stressreliever.models.ImageAdapter;
 import com.example.noahlovato.stressreliever.R;
 import com.example.noahlovato.stressreliever.models.LocalPhoto;
 
@@ -73,7 +72,7 @@ public class KittensFragment extends Fragment {
         recyclerView.setAdapter(imageAdapter);
 
         //sets pictures to be in a grid with two columns
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);
         recyclerView.setLayoutManager(layoutManager);
 
         return recyclerView;
