@@ -59,7 +59,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
             public void onClick(View v) {
                 Log.d(TAG, "Button 1: " + button1.isPlaying());
                 Log.d(TAG, "Button 2: " + button2.isPlaying() + "\n");
-                Log.d(TAG, "Button id pressed: " + R.id.music_button);
                 Log.d(TAG, "Button 1 song: " + button1.getName());
                 Log.d(TAG, "Button 2 song: " + button2.getName());
 

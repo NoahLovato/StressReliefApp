@@ -46,6 +46,9 @@ public class KittensFragment extends Fragment {
         {
             new LocalPhoto(R.drawable.download, "Cat 1"),
             new LocalPhoto(R.drawable.download1, "Cat 2"),
+            new LocalPhoto(R.drawable.doggo, "Dog 1"),
+            new LocalPhoto(R.drawable.download3, "Dog 2"),
+            new LocalPhoto(R.drawable.samoyed_cute_puppies, "Dog 3"),
             new LocalPhoto(R.drawable.images, "Cat 3"),
             new LocalPhoto(R.drawable.images1, "Cat 4"),
             new LocalPhoto(R.drawable.images2, "Cat 5"),
