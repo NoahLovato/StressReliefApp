@@ -2,6 +2,7 @@ package com.example.noahlovato.stressreliever.models;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.noahlovato.stressreliever.R;
@@ -53,7 +55,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         CardView cardView = holder.cardView;
         TextView textView = (TextView) cardView.findViewById(R.id.song_title);
         final ImageButton imageButton = (ImageButton) cardView.findViewById(R.id.music_button);
-        final ProgressBar pb = (ProgressBar) cardView.findViewById(R.id.progressBar);
+        final SeekBar pb = (SeekBar) cardView.findViewById(R.id.seekBar);
         textView.setText(tracks[position]);
 
 
@@ -67,23 +69,34 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
 
                 if(!track1.isPlaying() && !track2.isPlaying())
                 {
-                    track1 = new Track(imageButton,pb,false,tracks[position], context);
-                    track1.play();
+                            Log.d(TAG, "Playing track 1 from start");
+                            track1 = new Track(imageButton, pb, false, tracks[position], context);
+                            track1.play();
                 }
                 else if(track1.isPlaying())
                 {
+                    Log.d(TAG, "Stopping track 1");
                     track1.stop();
                     if(!(track1.getId() == tracks[position]))
                     {
+                        Log.d(TAG, "Resetting track 1");
+                        track1.getSeekBar().setProgress(0);
+                        track1.getMedia().release();
+                        Log.d(TAG, "Playing track 2 from start");
                         track2 = new Track(imageButton, pb, false, tracks[position], context);
                         track2.play();
                     }
                 }
                 else if(track2.isPlaying())
                 {
+                    Log.d(TAG, "Stopping track 2");
                     track2.stop();
                     if(!(track2.getId() == tracks[position]))
                     {
+                        Log.d(TAG, "Resetting track 2");
+                        track2.getSeekBar().setProgress(0);
+                        track2.getMedia().release();
+                        Log.d(TAG, "Playing track 1 from start");
                         track1 = new Track(imageButton,pb,false,tracks[position], context);
                         track1.play();
                     }
