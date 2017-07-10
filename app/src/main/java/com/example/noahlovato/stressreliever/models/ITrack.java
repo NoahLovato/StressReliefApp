@@ -13,8 +13,8 @@ public interface ITrack {
     public boolean isPlaying();
     public void setPlaying(boolean playing);
     public void setButton(ImageButton button);
-    public void setName(String name);
-    public String getName();
+    public void setId(int id);
+    public int getId();
     public ProgressBar getProgressBar();
     public void setProgressBar(ProgressBar progress);
     public void play();

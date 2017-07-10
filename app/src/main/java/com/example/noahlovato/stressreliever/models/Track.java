@@ -15,7 +15,7 @@ public class Track implements ITrack {
     ImageButton button;
     ProgressBar progressBar;
     boolean playing;
-    String name;
+    int id;
     CountDownTimer timer;
 
     public Track()
@@ -24,16 +24,16 @@ public class Track implements ITrack {
         progressBar = null;
         playing = false;
         timer = null;
-        name = "";
+        id = 0;
     }
 
 
-    public Track(ImageButton button, ProgressBar progressBar, boolean playing, String name)
+    public Track(ImageButton button, ProgressBar progressBar, boolean playing, int id)
     {
         this.button = button;
         this.progressBar = progressBar;
         this.playing = playing;
-        this.name = name;
+        this.id = id;
 
         this.timer = new CountDownTimer(10000, 1000) {
             @Override
@@ -68,8 +68,8 @@ public class Track implements ITrack {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -89,8 +89,8 @@ public class Track implements ITrack {
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void play()

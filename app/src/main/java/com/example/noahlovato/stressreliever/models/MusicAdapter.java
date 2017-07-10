@@ -31,9 +31,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         }
     }
 
-    private String[] tracks;
+    private int[] tracks;
 
-    public MusicAdapter(String[] tracks)
+    public MusicAdapter(int[] tracks)
     {
         this.tracks = tracks;
     }
@@ -59,8 +59,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
             public void onClick(View v) {
                 Log.d(TAG, "Button 1: " + button1.isPlaying());
                 Log.d(TAG, "Button 2: " + button2.isPlaying() + "\n");
-                Log.d(TAG, "Button 1 song: " + button1.getName());
-                Log.d(TAG, "Button 2 song: " + button2.getName());
+                Log.d(TAG, "Button 1 song: " + button1.getId());
+                Log.d(TAG, "Button 2 song: " + button2.getId());
 
                 if(!button1.isPlaying() && !button2.isPlaying())
                 {
@@ -70,7 +70,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 else if(button1.isPlaying())
                 {
                     button1.stop();
-                    if(!button1.getName().equals(tracks[position]))
+                    if(!(button1.getId() == tracks[position]))
                     {
                         button2 = new Track(imageButton, pb, false, tracks[position]);
                         button2.play();
@@ -79,7 +79,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 else if(button2.isPlaying())
                 {
                     button2.stop();
-                    if(!button2.getName().equals(tracks[position]))
+                    if(!(button2.getId() == tracks[position]))
                     {
                         button1 = new Track(imageButton,pb,false,tracks[position]);
                         button1.play();

@@ -38,9 +38,7 @@ public class MusicFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)inflater.inflate(
                 R.layout.fragment_music,container,false);
 
-        String[] tracks = {"Song 1", "Song 2", "Song 3","Song 4", "Song 5", "Song 6",
-                "Song 7", "Song 8", "Song 9","Song 10", "Song 11",
-                "Song 12","Song 13", "Song 14", "Song 15"};
+        int[] tracks = {R.raw.calming, R.raw.lightrain, R.raw.water_stream};
 
         //Fills recycler view with music tracks
         MusicAdapter musicAdapter = new MusicAdapter(tracks);
