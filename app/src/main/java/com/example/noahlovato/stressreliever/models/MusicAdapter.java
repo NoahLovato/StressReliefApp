@@ -1,6 +1,7 @@
 package com.example.noahlovato.stressreliever.models;
 
-import android.os.CountDownTimer;
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,8 +21,9 @@ import com.example.noahlovato.stressreliever.R;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {
 
     private static final String TAG = "MusicAdapter";
-    ITrack button1 = new Track();
-    ITrack button2 = new Track();
+    Context context;
+    ITrack track1 = new Track();
+    ITrack track2 = new Track();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
@@ -33,9 +35,10 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
 
     private int[] tracks;
 
-    public MusicAdapter(int[] tracks)
+    public MusicAdapter(int[] tracks, Context context)
     {
         this.tracks = tracks;
+        this.context = context;
     }
 
     @Override
@@ -57,32 +60,32 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Button 1: " + button1.isPlaying());
-                Log.d(TAG, "Button 2: " + button2.isPlaying() + "\n");
-                Log.d(TAG, "Button 1 song: " + button1.getId());
-                Log.d(TAG, "Button 2 song: " + button2.getId());
+                Log.d(TAG, "Button 1: " + track1.isPlaying());
+                Log.d(TAG, "Button 2: " + track2.isPlaying() + "\n");
+                Log.d(TAG, "Button 1 song: " + track1.getId());
+                Log.d(TAG, "Button 2 song: " + track2.getId());
 
-                if(!button1.isPlaying() && !button2.isPlaying())
+                if(!track1.isPlaying() && !track2.isPlaying())
                 {
-                    button1 = new Track(imageButton,pb,false,tracks[position]);
-                    button1.play();
+                    track1 = new Track(imageButton,pb,false,tracks[position], context);
+                    track1.play();
                 }
-                else if(button1.isPlaying())
+                else if(track1.isPlaying())
                 {
-                    button1.stop();
-                    if(!(button1.getId() == tracks[position]))
+                    track1.stop();
+                    if(!(track1.getId() == tracks[position]))
                     {
-                        button2 = new Track(imageButton, pb, false, tracks[position]);
-                        button2.play();
+                        track2 = new Track(imageButton, pb, false, tracks[position], context);
+                        track2.play();
                     }
                 }
-                else if(button2.isPlaying())
+                else if(track2.isPlaying())
                 {
-                    button2.stop();
-                    if(!(button2.getId() == tracks[position]))
+                    track2.stop();
+                    if(!(track2.getId() == tracks[position]))
                     {
-                        button1 = new Track(imageButton,pb,false,tracks[position]);
-                        button1.play();
+                        track1 = new Track(imageButton,pb,false,tracks[position], context);
+                        track1.play();
                     }
                 }
 

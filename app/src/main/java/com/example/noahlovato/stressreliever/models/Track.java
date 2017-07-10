@@ -1,5 +1,8 @@
 package com.example.noahlovato.stressreliever.models;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -16,38 +19,35 @@ public class Track implements ITrack {
     ProgressBar progressBar;
     boolean playing;
     int id;
-    CountDownTimer timer;
+    MediaPlayer mediaPlayer;
+    Context context;
 
     public Track()
     {
         button = null;
         progressBar = null;
         playing = false;
-        timer = null;
         id = 0;
     }
 
 
-    public Track(ImageButton button, ProgressBar progressBar, boolean playing, int id)
+    public Track(ImageButton button, ProgressBar progressBar,
+                 boolean playing, int id, Context context)
     {
         this.button = button;
         this.progressBar = progressBar;
         this.playing = playing;
         this.id = id;
 
-        this.timer = new CountDownTimer(10000, 1000) {
+        mediaPlayer = MediaPlayer.create(context, id);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void onTick(long millisUntilFinished)
-            {
-                getProgressBar().incrementProgressBy(5);
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
             }
+        });
 
-            @Override
-            public void onFinish()
-            {
-                stop();
-            }
-        };
     }
 
     @Override
@@ -97,14 +97,14 @@ public class Track implements ITrack {
     {
         getButton().setImageResource(R.drawable.ic_pause_black_24dp);
         setPlaying(true);
-        timer.start();
+        mediaPlayer.start();
     }
 
     public void stop()
     {
-        timer.cancel();
-        getProgressBar().incrementProgressBy(-100);
         getButton().setImageResource(R.drawable.ic_play_arrow_black_24dp);
         setPlaying(false);
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 }

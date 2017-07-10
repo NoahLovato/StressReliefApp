@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
+import com.example.noahlovato.stressreliever.MainActivity;
 import com.example.noahlovato.stressreliever.R;
 import com.example.noahlovato.stressreliever.models.MusicAdapter;
 
@@ -41,7 +42,7 @@ public class MusicFragment extends Fragment {
         int[] tracks = {R.raw.calming, R.raw.lightrain, R.raw.water_stream};
 
         //Fills recycler view with music tracks
-        MusicAdapter musicAdapter = new MusicAdapter(tracks);
+        MusicAdapter musicAdapter = new MusicAdapter(tracks, getActivity());
         recyclerView.setAdapter(musicAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
